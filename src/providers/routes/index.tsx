@@ -4,6 +4,7 @@ import Register from '../../modules/clients/register';
 import Login from '../../modules/session/Login';
 import RecoveryPassword from '../../modules/session/RecoveryPassword';
 import { RouteCompany, RouteConfiguration, RouteCrm, RouteDashboard, RouteInventory, RouteSession, RouteSales } from './mapping';
+import Company from '../../modules/company/company';
 
 const AppRoutes = () => {
   return (
@@ -60,7 +61,7 @@ const AppRoutes = () => {
         <Route path={RouteConfiguration.CONFIGURATIONS_LOGS} element={<div>dashboard</div>} />
 
         {/* EMPRESA */}
-        <Route path={RouteCompany.COMPANY} element={<div>dashboard</div>} />
+        <Route path={RouteCompany.COMPANY} element={<Company />} />
         <Route path={RouteCompany.COMPANY_USERS} element={<div>dashboard</div>} />
         <Route path={RouteCompany.COMPANY_ROLES} element={<div>dashboard</div>} />
       </Routes>
