@@ -1,6 +1,6 @@
 export enum RouteSession {
-  LOGIN = '/login',
-  RECOVERY_PASSWORD = '/recovery-password',
+  LOGIN = '/session/login',
+  RECOVERY_PASSWORD = '/session/recovery-password',
 }
 
 export enum RouteDashboard {
@@ -12,47 +12,56 @@ export enum RouteSales {
   CLIENTS_REGISTER = '/sales/clients/:id',
   ORDERS = '/sales/orders',
   ORDERS_REGISTER = '/sales/orders/:id',
+  CASH_REGISTER = '/sales/cash-register',
+  CASH_REGISTER_REGISTER = '/sales/cash-register/:id',
   VOUCHERS = '/sales/vouchers',
-  VOUCHERS_REGISTER = '/sales/vouchers/:id',
-  OPEN_CASH = '/sales/open-cash',
-  OPEN_CASH_REGISTER = '/sales/open-cash/:id',
+  ACCOUNTS_RECEIVABLE = '/sales/accounts-receivable',
   PRICES_LIST = '/sales/configuration/prices-list',
   PRICES_LIST_PRODUCTS = '/sales/configuration/prices-list/products',
+  SALES_PARAMETERS = '/sales/configuration/sales-parameters',
 }
+
 export enum RouteInventory {
   WAREHOUSES = '/inventory/warehouses',
-  WAREHOUSES_REGISTER = '/inventory/warehouses/:id',
   PRODUCTS = '/inventory/products',
   PRODUCTS_REGISTER = '/inventory/products/:id',
-  PUCHARSES_ORDERS = '/inventory/purchases-orders',
-  PUCHARSES_ORDERS_REGISTER = '/inventory/purchases-orders/:id',
-  PUCHARSES_RECEIP = '/inventory/purchases-receipt',
-  PUCHARSES_RECEIP_REGISTER = '/inventory/purchases-receipt/:id',
-  PRODUCTS_INCOME = '/inventory/products-income',
-  PRODUCTS_INCOME_REGISTER = '/inventory/products-income/:id',
-  PRODUCTS_OUTCOME = '/inventory/products-outcome',
-  PRODUCTS_OUTCOME_REGISTER = '/inventory/products-outcome/:id',
+  PURCHASES_ORDERS = '/inventory/purchases-orders',
+  PURCHASES_ORDERS_REGISTER = '/inventory/purchases-orders/:id',
+  PURCHASES_RECEIPT = '/inventory/purchases-receipt',
+  PURCHASES_RECEIPT_REGISTER = '/inventory/purchases-receipt/:id',
+  PAYABLE_ACCOUNTS = '/inventory/payable-accounts',
+  PRODUCTS_ENTRY = '/inventory/products-entry',
+  PRODUCTS_ENTRY_REGISTER = '/inventory/products-entry/:id',
+  PRODUCTS_OUTPUT = '/inventory/products-output',
+  PRODUCTS_OUTPUT_REGISTER = '/inventory/products-output/:id',
   TRANSFER_WAHERHOUSE = '/inventory/transfer-warehouse',
   TRANSFER_WAHERHOUSE_REGISTER = '/inventory/transfer-warehouse/:id',
   PROVIDERS = '/inventory/providers',
-  ACCOUNTS_PAYABLE = '/inventory/accounts-payable',
 }
 
 export enum RouteCrm {
-  TRACKING_OPPORTUNITIES = '/crm/tracking-opportunities',
-  WHATSSAP = '/crm/whatssap',
-  COMMERCIAL_CAMPAIGNS = '/crm/commercial-campaigns',
-  COMMERCIAL_CAMPAIGNS_REGISTER = '/crm/commercial-campaigns/:id',
+  OPPORTUNITY_TRACKING = '/crm/opportunity-tracking',
+  OMNICHANNEL = '/crm/omnichannel',
+  PROMOTIONS = '/crm/promotions',
+}
+
+export enum RouteMaintenance {
+  JOB_ORDERS = '/maintenance/job-orders',
+  JOB_ORDERS_REGISTER = '/maintenance/job-orders/:id',
+  JOB_PANEL = '/maintenance/job-panel',
+  TECHNICAL_MANAGEMENT = '/maintenance/technical-management',
 }
 
 export enum RouteConfiguration {
-  CONFIGURATION_GENERAL_MASTERS = '/configuration/general-masters',
-  CONFIGURATION_VARIABLES_INTEGRATIONS = '/configuration/variables-integrations',
-  CONFIGURATIONS_LOGS = '/configuration/logs',
+  GENERAL_MASTERS = '/configuration/general-masters',
+  VARIABLES_INTEGRATIONS = '/configuration/variables-integrations',
+  LOGGIN_ACTIVITIES = '/configuration/loggin-activities',
 }
 
 export enum RouteCompany {
   COMPANY = '/company',
-  COMPANY_USERS = '/company/users',
-  COMPANY_ROLES = '/company/roles',
+  BRANCH_OFFICES = '/company/branch-offices',
+  BRANCH_OFFICES_REGISTER = '/company/branch-offices/:id',
+  USERS = '/company/users',
+  ROLES = '/company/roles',
 }

@@ -5,7 +5,11 @@ import { Layout } from 'antd';
 
 const { Content } = Layout;
 
-const AppLayout = ({ children }: { children: JSX.Element }) => {
+interface AppLayoutProps {
+  children: React.ReactNode;
+}
+
+const AppLayout = ({ children }: AppLayoutProps) => {
   const [collapsed, setCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 

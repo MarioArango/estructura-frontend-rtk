@@ -1,292 +1,6 @@
-// import { Avatar, Dropdown, Layout, Menu, Space, Typography } from 'antd';
-// import {
-//   DashboardOutlined,
-//   TeamOutlined,
-//   BranchesOutlined,
-//   SettingOutlined,
-//   ShopOutlined,
-//   ShoppingOutlined,
-//   DatabaseOutlined,
-//   BankOutlined,
-//   UserOutlined,
-//   BarsOutlined,
-//   TagsOutlined,
-//   ShoppingCartOutlined,
-//   InboxOutlined,
-//   ExportOutlined,
-//   UserSwitchOutlined,
-//   FileTextOutlined,
-//   DollarOutlined,
-//   CalculatorOutlined,
-//   BarChartOutlined,
-//   PieChartOutlined,
-//   LineChartOutlined,
-//   SwapOutlined,
-//   MessageOutlined,
-//   FundOutlined,
-//   HistoryOutlined,
-//   DownOutlined,
-//   CaretDownOutlined,
-// } from '@ant-design/icons';
-// import { useState } from 'react';
-
-// const { Sider } = Layout;
-
-// const AppSider = () => {
-//   const [collapsed, setCollapsed] = useState(false);
-//   const userItems = [
-//     {
-//       key: '1',
-//       label: 'Mi Perfil',
-//     },
-//     {
-//       key: '2',
-//       label: 'Preferencias',
-//     },
-//     {
-//       key: '3',
-//       label: 'Cerrar Sesión',
-//     },
-//   ];
-//   return (
-//     <Sider
-//       width={260}
-//       theme="light"
-//       collapsible
-//       collapsed={collapsed}
-//       onCollapse={setCollapsed}
-//       style={{
-//         boxShadow: '0 2px 8px rgba(0, 0, 0, 0.09)',
-//         height: '100vh',
-//         position: 'fixed',
-//         left: 0,
-//         top: 0,
-//         bottom: 0,
-//       }}
-//     >
-//       <div
-//         style={{
-//           padding: '20px 16px',
-//           borderBottom: '1px solid #f0f0f0',
-//           marginBottom: '8px',
-//           display: 'flex',
-//           alignItems: 'center',
-//           justifyContent: collapsed ? 'center' : 'space-between',
-//         }}
-//       >
-//         {collapsed ? (
-//           <Avatar size={40} icon={<UserOutlined />} style={{ backgroundColor: '#1890ff' }} />
-//         ) : (
-//           <Dropdown menu={{ items: userItems }} trigger={['click']}>
-//             <Space style={{ cursor: 'pointer' }}>
-//               <Avatar size={40} icon={<UserOutlined />} style={{ backgroundColor: '#1890ff' }} />
-//               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-//                 <Typography.Text strong>Administrador</Typography.Text>
-//                 <Typography.Text type="secondary" style={{ fontSize: '12px' }}>
-//                   admin@empresa.com
-//                 </Typography.Text>
-//               </div>
-//               <CaretDownOutlined style={{ color: '#bfbfbf', fontSize: '12px' }} />
-//             </Space>
-//           </Dropdown>
-//         )}
-//       </div>
-//       <Menu
-//         mode="inline"
-//         defaultSelectedKeys={['1']}
-//         defaultOpenKeys={collapsed ? [] : ['sub1', 'sub2', 'sub3', 'sub4', 'sub5', 'sub6']}
-//         style={{ borderRight: 0 }}
-//         items={[
-//           {
-//             key: '1',
-//             icon: <DashboardOutlined />,
-//             label: 'Dashboard',
-//           },
-//           {
-//             key: 'sub1',
-//             icon: <ShoppingCartOutlined />,
-//             label: 'Ventas',
-//             children: [
-//               {
-//                 key: '1-1',
-//                 icon: <TeamOutlined />,
-//                 label: 'Clientes',
-//               },
-//               {
-//                 key: '1-2',
-//                 icon: <ShoppingCartOutlined />,
-//                 label: 'Pedidos',
-//               },
-//               {
-//                 key: '1-3',
-//                 icon: <FileTextOutlined />,
-//                 label: 'Comprobantes',
-//               },
-//               {
-//                 key: '1-4',
-//                 icon: <CalculatorOutlined />,
-//                 label: 'Apertura de Caja',
-//               },
-//               {
-//                 key: '1-5',
-//                 icon: <SettingOutlined />,
-//                 label: 'Configuraciones',
-//                 children: [
-//                   {
-//                     key: '1-5-1',
-//                     icon: <DollarOutlined />,
-//                     label: 'Lista de Precios',
-//                   },
-//                 ],
-//               },
-//             ],
-//           },
-//           {
-//             key: 'sub2',
-//             icon: <ShopOutlined />,
-//             label: 'Inventario',
-//             children: [
-//               {
-//                 key: '2-1',
-//                 icon: <ShopOutlined />,
-//                 label: 'Almacenes',
-//               },
-//               {
-//                 key: '2-2',
-//                 icon: <TagsOutlined />,
-//                 label: 'Productos',
-//               },
-//               {
-//                 key: '2-3',
-//                 icon: <ShoppingOutlined />,
-//                 label: 'Ordenes de Compra',
-//               },
-//               {
-//                 key: '2-4',
-//                 icon: <InboxOutlined />,
-//                 label: 'Recepción de Compra',
-//               },
-//               {
-//                 key: '2-5',
-//                 icon: <InboxOutlined />,
-//                 label: 'Ingreso de Productos',
-//               },
-//               {
-//                 key: '2-6',
-//                 icon: <ExportOutlined />,
-//                 label: 'Salida de Productos',
-//               },
-//               {
-//                 key: '2-7',
-//                 icon: <SwapOutlined />,
-//                 label: 'Transferencia entre Almacenes',
-//               },
-//               {
-//                 key: '2-8',
-//                 icon: <TeamOutlined />,
-//                 label: 'Proveedores',
-//               },
-//               {
-//                 key: '2-9',
-//                 icon: <FileTextOutlined />,
-//                 label: 'Cuentas por Pagar',
-//               },
-//             ],
-//           },
-//           {
-//             key: 'sub3',
-//             icon: <TeamOutlined />,
-//             label: 'CRM',
-//             children: [
-//               {
-//                 key: '3-1',
-//                 icon: <LineChartOutlined />,
-//                 label: 'Seguimiento de Oportunidades',
-//               },
-//               {
-//                 key: '3-2',
-//                 icon: <MessageOutlined />,
-//                 label: 'WhatsApp',
-//               },
-//               {
-//                 key: '3-3',
-//                 icon: <FundOutlined />,
-//                 label: 'Campañas Comerciales',
-//               },
-//             ],
-//           },
-//           {
-//             key: 'sub4',
-//             icon: <BarChartOutlined />,
-//             label: 'Reportes',
-//             children: [
-//               {
-//                 key: '4-1',
-//                 icon: <LineChartOutlined />,
-//                 label: 'Ventas',
-//               },
-//               {
-//                 key: '4-2',
-//                 icon: <PieChartOutlined />,
-//                 label: 'Inventarios',
-//               },
-//             ],
-//           },
-//           {
-//             key: 'sub5',
-//             icon: <SettingOutlined />,
-//             label: 'Configuración',
-//             children: [
-//               {
-//                 key: '5-1',
-//                 icon: <DatabaseOutlined />,
-//                 label: 'Maestros Generales',
-//               },
-//               {
-//                 key: '5-2',
-//                 icon: <BarsOutlined />,
-//                 label: 'Variables Integración',
-//               },
-//               {
-//                 key: '5-3',
-//                 icon: <HistoryOutlined />,
-//                 label: 'Log de Actividades',
-//               },
-//             ],
-//           },
-//           {
-//             key: 'sub6',
-//             icon: <BankOutlined />,
-//             label: 'Empresa',
-//             children: [
-//               {
-//                 key: '6-1',
-//                 icon: <BranchesOutlined />,
-//                 label: 'Sucursales',
-//               },
-//               {
-//                 key: '6-2',
-//                 icon: <UserOutlined />,
-//                 label: 'Usuarios',
-//               },
-//               {
-//                 key: '6-3',
-//                 icon: <UserSwitchOutlined />,
-//                 label: 'Roles',
-//               },
-//             ],
-//           },
-//         ]}
-//       />
-//     </Sider>
-//   );
-// };
-
-// export default AppSider;
-
-import { Layout, Menu, Avatar, Space, Typography, Divider } from 'antd';
+import { useState, useEffect } from 'react';
+import { Layout, Menu, Avatar, Space, Typography } from 'antd';
 import {
-  AppstoreOutlined,
   ShoppingCartOutlined,
   ShopOutlined,
   TeamOutlined,
@@ -297,7 +11,6 @@ import {
   CalculatorOutlined,
   UserOutlined,
   CaretDownOutlined,
-  CaretUpOutlined,
   DashboardOutlined,
   DollarOutlined,
   TagsOutlined,
@@ -315,7 +28,8 @@ import {
   BranchesOutlined,
   UserSwitchOutlined,
 } from '@ant-design/icons';
-import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { RouteInventory, RouteSales } from '../../../providers/routes/mapping';
 
 const { Sider } = Layout;
 
@@ -429,93 +143,103 @@ const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
             label: 'Dashboard',
           },
           {
-            key: 'sub1',
+            key: 'sales',
             icon: <ShoppingCartOutlined />,
             label: 'Ventas',
             children: [
               {
-                key: '1-1',
+                key: 'clients',
                 icon: <TeamOutlined />,
-                label: 'Clientes',
+                label: <Link to={RouteSales.CLIENTS}>Clientes</Link>,
               },
               {
-                key: '1-2',
+                key: 'orders',
                 icon: <ShoppingCartOutlined />,
-                label: 'Pedidos',
+                label: <Link to={RouteSales.ORDERS}>Pedidos</Link>,
               },
               {
-                key: '1-3',
+                key: 'vouchers',
                 icon: <FileTextOutlined />,
-                label: 'Comprobantes',
+                label: <Link to={RouteSales.VOUCHERS}>Comprobantes</Link>,
               },
               {
-                key: '1-4',
+                key: 'cash-register',
                 icon: <CalculatorOutlined />,
-                label: 'Apertura de Caja',
+                label: <Link to={RouteSales.CASH_REGISTER}>Apertura de Caja</Link>,
               },
               {
-                key: '1-5',
+                key: 'accounts-receivable',
+                icon: <CalculatorOutlined />,
+                label: <Link to={RouteSales.ACCOUNTS_RECEIVABLE}>Cuentas por Cobrar</Link>,
+              },
+              {
+                key: 'sales-configuration',
                 icon: <SettingOutlined />,
                 label: 'Configuraciones',
                 children: [
                   {
-                    key: '1-5-1',
+                    key: 'prices-list',
                     icon: <DollarOutlined />,
-                    label: 'Lista de Precios',
+                    label: <Link to={RouteSales.PRICES_LIST}>Lista de Precios</Link>,
+                  },
+                  {
+                    key: 'sales-parameters',
+                    icon: <DollarOutlined />,
+                    label: <Link to={RouteSales.SALES_PARAMETERS}>Parametros de Venta</Link>,
                   },
                 ],
               },
             ],
           },
           {
-            key: 'sub2',
+            key: 'inventario',
             icon: <ShopOutlined />,
             label: 'Inventario',
             children: [
               {
-                key: '2-1',
+                key: 'warehouses',
                 icon: <ShopOutlined />,
-                label: 'Almacenes',
+                label: <Link to={RouteInventory.WAREHOUSES}>Almacenes</Link>,
               },
               {
-                key: '2-2',
+                key: 'products',
                 icon: <TagsOutlined />,
-                label: 'Productos',
+                label: <Link to={RouteInventory.PRODUCTS}>Productos</Link>,
               },
               {
-                key: '2-3',
+                key: 'purchases-orders',
                 icon: <ShoppingOutlined />,
-                label: 'Ordenes de Compra',
+                label: <Link to={RouteInventory.PURCHASES_ORDERS}>Órdenes de Compra</Link>,
               },
               {
-                key: '2-4',
+                key: 'purchases-receipt',
                 icon: <InboxOutlined />,
-                label: 'Recepción de Compra',
+                label: <Link to={RouteInventory.PURCHASES_RECEIPT}>Recepción de Compra</Link>,
               },
               {
-                key: '2-5',
+                key: 'products-entry',
                 icon: <InboxOutlined />,
-                label: 'Ingreso de Productos',
+                label: <Link to={RouteInventory.PRODUCTS_ENTRY}>Ingreso de Productos</Link>,
               },
               {
-                key: '2-6',
+                key: 'products-output',
                 icon: <ExportOutlined />,
-                label: 'Salida de Productos',
+                label: <Link to={RouteInventory.PRODUCTS_OUTPUT}>Salida de Productos</Link>,
               },
               {
-                key: '2-7',
+                key: 'transfer-warehouse',
                 icon: <SwapOutlined />,
-                label: 'Transferencia entre Almacenes',
+                label: <Link to={RouteInventory.TRANSFER_WAHERHOUSE}>Transferencia entre Almacenes</Link>,
               },
               {
-                key: '2-8',
+                key: 'suppliers',
                 icon: <TeamOutlined />,
-                label: 'Proveedores',
+                label: <Link to={RouteInventory.PROVIDERS}>Proveedores</Link>,
               },
               {
-                key: '2-9',
+                key: 'payable-accounts',
                 icon: <FileTextOutlined />,
-                label: 'Cuentas por Pagar',
+                label: <Link to={RouteInventory.PAYABLE_ACCOUNTS}>Cuentas por Pagar</Link>,
               },
             ],
           },

@@ -1,70 +1,104 @@
-import { BrowserRouter, Routes, Route } from 'react-router';
-import Inventario from '../../modules/properties/inventories';
-import Register from '../../modules/clients/register';
-import Login from '../../modules/session/Login';
-import RecoveryPassword from '../../modules/session/RecoveryPassword';
-import { RouteCompany, RouteConfiguration, RouteCrm, RouteDashboard, RouteInventory, RouteSession, RouteSales } from './mapping';
-import Company from '../../modules/company/company';
+import { Routes, Route, BrowserRouter } from 'react-router';
+import Login from '../../modules/Session/Login';
+import RecoveryPassword from '../../modules/Session/RecoveryPassword';
+import { RouteCompany, RouteConfiguration, RouteCrm, RouteDashboard, RouteInventory, RouteSession, RouteSales, RouteMaintenance } from './mapping';
+import Dashboard from '../../modules/Dashboard';
+import Clients from '../../modules/Sales/Clients';
+import Orders from '../../modules/Sales/Orders';
+import CashRegister from '../../modules/Sales/CashRegister';
+import Vouchers from '../../modules/Sales/Vouchers';
+import AccountsReceivable from '../../modules/Sales/AccountsReceivable';
+import PricesList from '../../modules/Sales/Configuration/PricesList';
+import SalesParameters from '../../modules/Sales/Configuration/SalesParameters';
+import Warehouses from '../../modules/Inventories/Warehouses';
+import Products from '../../modules/Inventories/Products';
+import PurchaseOrders from '../../modules/Inventories/PurchaseOrders';
+import PurchaseReceipt from '../../modules/Inventories/PurchaseReceipt';
+import ProductOutput from '../../modules/Inventories/ProductOutput';
+import ProductEntry from '../../modules/Inventories/ProductEntry';
+import TransferWarehouses from '../../modules/Inventories/TransferWarehouses';
+import Providers from '../../modules/Inventories/Providers';
+import OportunityTracking from '../../modules/CRM/OportunityTracking';
+import Onmichannel from '../../modules/CRM/Omnichannel';
+import Promotions from '../../modules/CRM/Promotions';
+import JobOrder from '../../modules/Maintenance/JobOrder';
+import JobPanel from '../../modules/Maintenance/JobPanel';
+import TechnicalManagement from '../../modules/Maintenance/TechnicalManagement';
+import GeneralMasters from '../../modules/Configuration/GeneralMasters';
+import VariablesIntegration from '../../modules/Configuration/VariablesIntegration';
+import LogginActivities from '../../modules/Configuration/LogginActivities';
+import Company from '../../modules/Company/Company';
+import BranchOffices from '../../modules/Company/BranchOffices';
+import Users from '../../modules/Company/Users';
+import Roles from '../../modules/Company/Roles';
 
-const AppRoutes = () => {
+const AppRoutes = ({ Layout }: { Layout: React.FC<{ children: React.ReactNode }> }) => {
   return (
     <BrowserRouter>
-      <Routes>
-        {/* SESION */}
-        <Route path={RouteSession.LOGIN} element={<Login />} />
-        <Route path={RouteSession.RECOVERY_PASSWORD} element={<RecoveryPassword />} />
+      <Layout>
+        <Routes>
+          {/* SESION */}
+          <Route path={RouteSession.LOGIN} element={<Login />} />
+          <Route path={RouteSession.RECOVERY_PASSWORD} element={<RecoveryPassword />} />
 
-        {/* RUTAS NO ENCONTRADAS */}
-        <Route path="*" element={<div>404 Not Found</div>} />
+          <Route path={RouteDashboard.DASHBOARD} element={<Dashboard />} />
 
-        <Route path={RouteDashboard.DASHBOARD} element={<div>dashboard</div>} />
+          {/* VENTAS */}
+          <Route path={RouteSales.CLIENTS} element={<Clients />} />
+          <Route path={RouteSales.CLIENTS_REGISTER} element={<Clients />} />
+          <Route path={RouteSales.ORDERS} element={<Orders />} />
+          <Route path={RouteSales.ORDERS_REGISTER} element={<Orders />} />
+          <Route path={RouteSales.CASH_REGISTER} element={<CashRegister />} />
+          <Route path={RouteSales.CASH_REGISTER_REGISTER} element={<CashRegister />} />
+          <Route path={RouteSales.VOUCHERS} element={<Vouchers />} />
+          <Route path={RouteSales.ACCOUNTS_RECEIVABLE} element={<AccountsReceivable />} />
+          <Route path={RouteSales.PRICES_LIST} element={<PricesList />} />
+          <Route path={RouteSales.PRICES_LIST_PRODUCTS} element={<PricesList />} />
+          <Route path={RouteSales.SALES_PARAMETERS} element={<SalesParameters />} />
 
-        {/* VENTAS */}
-        <Route path={RouteSales.CLIENTS} element={<div>dashboard</div>} />
-        <Route path={RouteSales.CLIENTS_REGISTER} element={<Register />} />
-        <Route path={RouteSales.ORDERS} element={<div>dashboard</div>} />
-        <Route path={RouteSales.ORDERS_REGISTER} element={<div>dashboard</div>} />
-        <Route path={RouteSales.VOUCHERS} element={<div>dashboard</div>} />
-        <Route path={RouteSales.VOUCHERS_REGISTER} element={<div>dashboard</div>} />
-        <Route path={RouteSales.OPEN_CASH} element={<div>dashboard</div>} />
-        <Route path={RouteSales.OPEN_CASH_REGISTER} element={<div>dashboard</div>} />
-        <Route path={RouteSales.PRICES_LIST} element={<div>dashboard</div>} />
-        <Route path={RouteSales.PRICES_LIST_PRODUCTS} element={<div>dashboard</div>} />
+          {/* INVENTARIOS */}
+          <Route path={RouteInventory.WAREHOUSES} element={<Warehouses />} />
+          <Route path={RouteInventory.PRODUCTS} element={<Products />} />
+          <Route path={RouteInventory.PRODUCTS_REGISTER} element={<Products />} />
+          <Route path={RouteInventory.PURCHASES_ORDERS} element={<PurchaseOrders />} />
+          <Route path={RouteInventory.PURCHASES_ORDERS_REGISTER} element={<PurchaseOrders />} />
+          <Route path={RouteInventory.PURCHASES_RECEIPT} element={<PurchaseReceipt />} />
+          <Route path={RouteInventory.PURCHASES_RECEIPT_REGISTER} element={<PurchaseReceipt />} />
+          <Route path={RouteInventory.PRODUCTS_OUTPUT} element={<ProductOutput />} />
+          <Route path={RouteInventory.PRODUCTS_OUTPUT_REGISTER} element={<ProductOutput />} />
+          <Route path={RouteInventory.PRODUCTS_ENTRY_REGISTER} element={<ProductEntry />} />
+          <Route path={RouteInventory.PRODUCTS_ENTRY_REGISTER} element={<ProductEntry />} />
+          <Route path={RouteInventory.TRANSFER_WAHERHOUSE} element={<TransferWarehouses />} />
+          <Route path={RouteInventory.TRANSFER_WAHERHOUSE_REGISTER} element={<TransferWarehouses />} />
+          <Route path={RouteInventory.PROVIDERS} element={<Providers />} />
 
-        {/* INVENTARIOS */}
-        <Route path={RouteInventory.WAREHOUSES} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.WAREHOUSES_REGISTER} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.PRODUCTS} element={<Inventario />} />
-        <Route path={RouteInventory.PRODUCTS_REGISTER} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.PUCHARSES_ORDERS} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.PUCHARSES_ORDERS_REGISTER} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.PUCHARSES_RECEIP} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.PUCHARSES_RECEIP_REGISTER} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.PRODUCTS_INCOME} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.PRODUCTS_INCOME_REGISTER} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.PRODUCTS_OUTCOME} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.PRODUCTS_OUTCOME_REGISTER} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.TRANSFER_WAHERHOUSE} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.TRANSFER_WAHERHOUSE_REGISTER} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.PROVIDERS} element={<div>dashboard</div>} />
-        <Route path={RouteInventory.ACCOUNTS_PAYABLE} element={<div>dashboard</div>} />
+          {/* CRM */}
+          <Route path={RouteCrm.OPPORTUNITY_TRACKING} element={<OportunityTracking />} />
+          <Route path={RouteCrm.OMNICHANNEL} element={<Onmichannel />} />
+          <Route path={RouteCrm.PROMOTIONS} element={<Promotions />} />
 
-        {/* CRM */}
-        <Route path={RouteCrm.TRACKING_OPPORTUNITIES} element={<div>dashboard</div>} />
-        <Route path={RouteCrm.WHATSSAP} element={<div>dashboard</div>} />
-        <Route path={RouteCrm.COMMERCIAL_CAMPAIGNS} element={<div>dashboard</div>} />
-        <Route path={RouteCrm.COMMERCIAL_CAMPAIGNS_REGISTER} element={<div>dashboard</div>} />
+          {/* MAINTENANCE */}
+          <Route path={RouteMaintenance.JOB_ORDERS} element={<JobOrder />} />
+          <Route path={RouteMaintenance.JOB_ORDERS_REGISTER} element={<JobOrder />} />
+          <Route path={RouteMaintenance.JOB_PANEL} element={<JobPanel />} />
+          <Route path={RouteMaintenance.TECHNICAL_MANAGEMENT} element={<TechnicalManagement />} />
 
-        {/* CONFIGURACION */}
-        <Route path={RouteConfiguration.CONFIGURATION_GENERAL_MASTERS} element={<div>dashboard</div>} />
-        <Route path={RouteConfiguration.CONFIGURATION_VARIABLES_INTEGRATIONS} element={<div>dashboard</div>} />
-        <Route path={RouteConfiguration.CONFIGURATIONS_LOGS} element={<div>dashboard</div>} />
+          {/* CONFIGURACION */}
+          <Route path={RouteConfiguration.GENERAL_MASTERS} element={<GeneralMasters />} />
+          <Route path={RouteConfiguration.VARIABLES_INTEGRATIONS} element={<VariablesIntegration />} />
+          <Route path={RouteConfiguration.LOGGIN_ACTIVITIES} element={<LogginActivities />} />
 
-        {/* EMPRESA */}
-        <Route path={RouteCompany.COMPANY} element={<Company />} />
-        <Route path={RouteCompany.COMPANY_USERS} element={<div>dashboard</div>} />
-        <Route path={RouteCompany.COMPANY_ROLES} element={<div>dashboard</div>} />
-      </Routes>
+          {/* EMPRESA */}
+          <Route path={RouteCompany.COMPANY} element={<Company />} />
+          <Route path={RouteCompany.BRANCH_OFFICES} element={<BranchOffices />} />
+          <Route path={RouteCompany.BRANCH_OFFICES_REGISTER} element={<BranchOffices />} />
+          <Route path={RouteCompany.USERS} element={<Users />} />
+          <Route path={RouteCompany.ROLES} element={<Roles />} />
+
+          {/* RUTAS NO ENCONTRADAS */}
+          <Route path="*" element={<div>404 Not Found</div>} />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 };

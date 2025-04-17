@@ -8,9 +8,7 @@ function App() {
   return (
     <Store>
       <Design>
-        <AppLayout>
-          <AppRoutes />
-        </AppLayout>
+        <AppRoutes Layout={AppLayout} />
       </Design>
     </Store>
   );
