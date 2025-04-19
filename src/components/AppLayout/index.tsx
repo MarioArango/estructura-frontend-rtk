@@ -27,28 +27,26 @@ const AppLayout = ({ children }: AppLayoutProps) => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const siderWidth = collapsed ? 80 : 260;
-
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <AppSider collapsed={collapsed} onCollapse={setCollapsed} />
       <Layout
         style={{
-          marginLeft: isMobile ? 0 : siderWidth,
+          marginLeft: collapsed ? 80 : 260,
           transition: 'margin-left 0.2s',
           minHeight: '100vh',
           position: 'relative',
+          backgroundColor: '#F2F2F7',
         }}
       >
         <AppHeader collapsed={collapsed} setCollapsed={setCollapsed} />
         <Content
           style={{
-            margin: '12px 14px 16px 12px',
-            padding: 12,
+            margin: '8px 8px 8px 8px',
             background: '#fff',
             borderRadius: '12px',
             minHeight: 280,
-            maxHeight: 'calc(100vh - 80px)',
+            maxHeight: 'calc(100vh - 65px)',
             overflow: 'auto',
             boxShadow: '0 1px 2px rgba(0, 0, 0, 0.03)',
           }}

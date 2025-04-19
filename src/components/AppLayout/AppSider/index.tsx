@@ -29,7 +29,14 @@ import {
   UserSwitchOutlined,
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-import { RouteInventory, RouteSales } from '../../../providers/routes/mapping';
+import {
+  RouteCompany,
+  RouteConfiguration,
+  RouteCrm,
+  RouteInventory,
+  RouteMaintenance,
+  RouteSales,
+} from '../../../providers/routes/mapping';
 
 const { Sider } = Layout;
 
@@ -39,9 +46,9 @@ interface AppSiderProps {
 }
 
 const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
-  const [openKeys, setOpenKeys] = useState<string[]>(['ventas']);
+  const [openKeys, setOpenKeys] = useState<string[]>(['sales']);
   const [selectedKeys, setSelectedKeys] = useState<string[]>(['dashboard']);
-  const [lastOpenKey, setLastOpenKey] = useState<string>('ventas');
+  const [lastOpenKey, setLastOpenKey] = useState<string>('sales');
 
   // Reset openKeys when sidebar collapses
   useEffect(() => {
@@ -54,9 +61,8 @@ const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
   }, [collapsed, lastOpenKey]);
 
   const onOpenChange = (keys: string[]) => {
-    console.log(keys);
-    // Solo estamos interesados en los módulos principales (ventas, inventario, crm, etc.)
-    const rootKeys = ['ventas', 'inventario', 'crm', 'reportes', 'configuracion', 'empresa'];
+    // Los módulos principales deben coincidir con las keys de los items del menú
+    const rootKeys = ['sales', 'inventario', 'maintenance', 'crm', 'reports', 'configuration', 'company'];
 
     // Filtrar las keys para que solo tengamos las keys de nivel raíz
     const rootKeysOpened = keys.filter(key => rootKeys.includes(key));
@@ -138,7 +144,7 @@ const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
         style={{ borderRight: 0 }}
         items={[
           {
-            key: '1',
+            key: 'dashboard',
             icon: <DashboardOutlined />,
             label: 'Dashboard',
           },
@@ -192,10 +198,11 @@ const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
             ],
           },
           {
-            key: 'inventario',
+            key: 'inventario', // Mantener coherencia con el listado de rootKeys
             icon: <ShopOutlined />,
             label: 'Inventario',
             children: [
+              // ... resto del código de los submenús
               {
                 key: 'warehouses',
                 icon: <ShopOutlined />,
@@ -244,85 +251,122 @@ const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
             ],
           },
           {
-            key: 'sub3',
+            key: 'maintenance', // Mantener coherencia con el listado de rootKeys
+            icon: <TeamOutlined />,
+            label: 'Mantenimiento',
+            children: [
+              {
+                key: 'job-order',
+                icon: <MessageOutlined />,
+                label: <Link to={RouteMaintenance.JOB_ORDERS}>Orden de Trabajo</Link>,
+              },
+              {
+                key: 'job-panel',
+                icon: <LineChartOutlined />,
+                label: <Link to={RouteMaintenance.JOB_PANEL}>Panel de Trabajo</Link>,
+              },
+              {
+                key: 'technical-management',
+                icon: <FundOutlined />,
+                label: <Link to={RouteMaintenance.TECHNICAL_MANAGEMENT}>Gestión de Tecnicos</Link>,
+              },
+            ],
+          },
+          {
+            key: 'crm', // Mantener coherencia con el listado de rootKeys
             icon: <TeamOutlined />,
             label: 'CRM',
             children: [
               {
-                key: '3-1',
-                icon: <LineChartOutlined />,
-                label: 'Seguimiento de Oportunidades',
-              },
-              {
-                key: '3-2',
+                key: 'opportunity-tracking',
                 icon: <MessageOutlined />,
-                label: 'WhatsApp',
+                label: <Link to={RouteCrm.OPPORTUNITY_TRACKING}>Seguimiento de Oportunidades</Link>,
               },
               {
-                key: '3-3',
+                key: 'channel',
+                icon: <LineChartOutlined />,
+                label: <Link to={RouteCrm.OMNICHANNEL}>Omnicanal</Link>,
+              },
+              {
+                key: 'promotions',
                 icon: <FundOutlined />,
-                label: 'Campañas Comerciales',
+                label: <Link to={RouteCrm.PROMOTIONS}>Promociones</Link>,
               },
             ],
           },
           {
-            key: 'sub4',
+            key: 'reports', // Mantener coherencia con el listado de rootKeys
             icon: <BarChartOutlined />,
             label: 'Reportes',
             children: [
               {
-                key: '4-1',
+                key: 'sales-report',
                 icon: <LineChartOutlined />,
                 label: 'Ventas',
               },
               {
-                key: '4-2',
+                key: 'inventory-report',
                 icon: <PieChartOutlined />,
                 label: 'Inventarios',
+              },
+              {
+                key: 'maintenance-report',
+                icon: <PieChartOutlined />,
+                label: 'Matenimiento',
+              },
+              {
+                key: 'crm-report',
+                icon: <PieChartOutlined />,
+                label: 'CRM',
               },
             ],
           },
           {
-            key: 'sub5',
+            key: 'configuration', // Mantener coherencia con el listado de rootKeys
             icon: <SettingOutlined />,
             label: 'Configuración',
             children: [
               {
-                key: '5-1',
+                key: 'general-masters',
                 icon: <DatabaseOutlined />,
-                label: 'Maestros Generales',
+                label: <Link to={RouteConfiguration.GENERAL_MASTERS}>Maestros Generales</Link>,
               },
               {
-                key: '5-2',
+                key: 'variables-integration',
                 icon: <BarsOutlined />,
-                label: 'Variables Integración',
+                label: <Link to={RouteConfiguration.GENERAL_MASTERS}>Variables Integración</Link>,
               },
               {
-                key: '5-3',
+                key: 'loggin-activities',
                 icon: <HistoryOutlined />,
-                label: 'Log de Actividades',
+                label: <Link to={RouteConfiguration.LOGGIN_ACTIVITIES}>Loggin Actividades</Link>,
               },
             ],
           },
           {
-            key: 'sub6',
+            key: 'company', // Mantener coherencia con el listado de rootKeys
             icon: <BankOutlined />,
             label: 'Empresa',
             children: [
               {
-                key: '6-1',
+                key: 'company-info',
                 icon: <BranchesOutlined />,
-                label: 'Sucursales',
+                label: <Link to={RouteCompany.COMPANY}>Empresa</Link>,
               },
               {
-                key: '6-2',
+                key: 'branch-offices',
+                icon: <BranchesOutlined />,
+                label: <Link to={RouteCompany.BRANCH_OFFICES}>Sucursales</Link>,
+              },
+              {
+                key: 'users',
                 icon: <UserOutlined />,
-                label: 'Usuarios',
+                label: <Link to={RouteCompany.USERS}>Usuarios</Link>,
               },
               {
-                key: '6-3',
+                key: 'roles',
                 icon: <UserSwitchOutlined />,
-                label: 'Roles',
+                label: <Link to={RouteCompany.ROLES}>Roles</Link>,
               },
             ],
           },

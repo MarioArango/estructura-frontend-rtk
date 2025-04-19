@@ -44,7 +44,11 @@ const AppHeader: React.FC<AppHeaderProps> = ({ collapsed, setCollapsed }) => {
     },
     {
       key: '3',
-      label: <Typography.Link style={{ display: 'block', textAlign: 'center' }}>Ver todas las notificaciones</Typography.Link>,
+      label: (
+        <Typography.Link style={{ display: 'block', textAlign: 'center' }}>
+          Ver todas las notificaciones
+        </Typography.Link>
+      ),
     },
   ];
 
@@ -52,13 +56,15 @@ const AppHeader: React.FC<AppHeaderProps> = ({ collapsed, setCollapsed }) => {
     <Header
       style={{
         backgroundColor: '#fff',
-        padding: '0 24px',
+        padding: '0 24px 0 8px',
         boxShadow: '0 1px 4px rgba(0, 0, 0, 0.03)',
         position: 'sticky',
         top: 0,
         zIndex: 1,
-        width: '100%',
+        width: '98.4%',
+        borderRadius: '12px',
         display: 'flex',
+        marginLeft: '8px',
         alignItems: 'center',
         justifyContent: 'space-between',
         height: '48px',
@@ -69,19 +75,8 @@ const AppHeader: React.FC<AppHeaderProps> = ({ collapsed, setCollapsed }) => {
           type="text"
           icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           onClick={() => setCollapsed(!collapsed)}
-          style={{ fontSize: '16px', marginRight: 24 }}
+          style={{ fontSize: '16px', marginRight: 12 }}
           size="large"
-        />
-
-        <Breadcrumb
-          items={[
-            {
-              title: <HomeFilled />,
-            },
-            {
-              title: 'Dashboard',
-            },
-          ]}
         />
       </div>
 
@@ -89,10 +84,21 @@ const AppHeader: React.FC<AppHeaderProps> = ({ collapsed, setCollapsed }) => {
         {searchVisible ? (
           <Search placeholder="Buscar..." style={{ width: 250 }} onBlur={() => setSearchVisible(false)} autoFocus />
         ) : (
-          <Button type="text" icon={<SearchOutlined />} onClick={() => setSearchVisible(true)} style={{ fontSize: '16px' }} size="large" />
+          <Button
+            type="text"
+            icon={<SearchOutlined />}
+            onClick={() => setSearchVisible(true)}
+            style={{ fontSize: '16px' }}
+            size="large"
+          />
         )}
 
-        <Dropdown menu={{ items: notificationItems }} trigger={['click']} placement="bottomRight" arrow={{ pointAtCenter: true }}>
+        <Dropdown
+          menu={{ items: notificationItems }}
+          trigger={['click']}
+          placement="bottomRight"
+          arrow={{ pointAtCenter: true }}
+        >
           <Badge count={2} size="small">
             <Button type="text" icon={<BellOutlined />} style={{ fontSize: '16px' }} size="small" />
           </Badge>

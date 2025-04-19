@@ -49,7 +49,8 @@ const globalTheme: ThemeConfig = {
     colorBorderSecondary: colors.gray3,
 
     // Tipografía - San Francisco (o su aproximación)
-    fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif',
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Arial, sans-serif',
     fontSize: 14,
 
     // Mayor radio de borde para un aspecto más iOS
