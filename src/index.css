@@ -1,6 +1,28 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
+/* INPUT NUMBER */
 .ant-input-number .ant-input-number-input {
-    text-align: right !important;
-    padding-inline-end: 30px !important;
+  text-align: right !important;
+  padding-inline-end: 30px !important;
+}
+
+/* CARDS */
+.card-ui {
+  .ant-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-inline-end: 20px !important;
+  }
+
+  .ant-card-actions > li {
+    width: auto !important;
+    margin-left: 16px;
+  }
+
+  .ant-tabs-content-holder {
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 }

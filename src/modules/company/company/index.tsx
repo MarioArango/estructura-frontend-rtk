@@ -30,6 +30,8 @@ import {
   TeamOutlined,
 } from '@ant-design/icons';
 import { requiredField } from '../../../helpers/form';
+import CardUI from '../../../components/ui/CardUI';
+import { colors } from '../../../providers/design/colors';
 
 const { Item } = Form;
 const { Title } = Typography;
@@ -81,7 +83,7 @@ const Company = () => {
     <Form
       form={mainForm}
       layout="horizontal"
-      labelCol={{ xs: 24, sm: 8, md: 6, lg: 8 }}
+      labelCol={{ xs: 24, sm: 8, md: 6, lg: 6 }}
       wrapperCol={{ xs: 24, sm: 16, md: 16, lg: 16 }}
       colon={false}
       initialValues={{ igv: 18 }}
@@ -98,18 +100,13 @@ const Company = () => {
           <Item label="RUC" name="ruc" rules={requiredField}>
             <Input prefix={<IdcardOutlined />} maxLength={11} showCount placeholder="Ej. 20123456789" />
           </Item>
-          <Item label="IGV (%)" name="igv">
-            <InputNumber min={1} max={100} style={{ width: '100%' }} placeholder="Ej. 18" addonAfter="%" />
-          </Item>
           <Item label="Dirección" name="address">
             <Input prefix={<HomeOutlined />} maxLength={200} showCount placeholder="Ingrese la dirección fiscal" />
           </Item>
           <Item label="Ubigeo" name="ubigeo">
             <Select allowClear showSearch options={ubigeoOptions} placeholder="Seleccione" optionFilterProp="label" />
           </Item>
-        </Col>
-        <Col xs={24} lg={12}>
-          <Title level={3}>Representante Legal</Title>
+          <Title level={3}>Representante</Title>
           <Item label="Nombre completo" name="legalRepresentative">
             <Input
               prefix={<UserOutlined />}
@@ -121,50 +118,31 @@ const Company = () => {
           <Item label="DNI" name="dniLegalRepresentative">
             <Input prefix={<IdcardOutlined />} maxLength={8} showCount placeholder="Ej. 12345678" />
           </Item>
+          <Title level={3}>Impuesto General</Title>
+          <Item label="IGV (%)" name="igv">
+            <InputNumber min={1} max={100} style={{ width: '100%' }} placeholder="Ej. 18" addonAfter="%" />
+          </Item>
+        </Col>
+        <Col xs={24} lg={12}>
+          <Title level={3}>Contácto</Title>
+          <Item label="Teléfono Principal" name="mainPhone">
+            <Input prefix={<PhoneOutlined />} maxLength={20} showCount placeholder="Ej. 987 456 789" />
+          </Item>
+          <Item label="Teléfono Secundario" name="secondaryPhone">
+            <Input prefix={<PhoneOutlined />} maxLength={20} showCount placeholder="Ej. 987 654 321" />
+          </Item>
+          <Item label="Correo Electrónico" name="email">
+            <Input prefix={<MailOutlined />} type="email" maxLength={100} showCount placeholder="empresa@ejemplo.com" />
+          </Item>
+          <Item label="Sitio Web" name="webSite">
+            <Input prefix={<GlobalOutlined />} maxLength={255} showCount placeholder="https://www.ejemplo.com" />
+          </Item>
+          <Title level={3}>Seguridad del sistema</Title>
+          <Item label="Máximo intentos sesión" name="maxSessionAttempts">
+            <InputNumber prefix={<LockOutlined />} min={1} max={10} style={{ width: '100%' }} placeholder="Ej. 3" />
+          </Item>
         </Col>
       </Row>
-    </Form>
-  );
-
-  // Tab de Contacto
-  const ContactTab = () => (
-    <Form
-      form={contactForm}
-      layout="horizontal"
-      labelCol={{ xs: 24, sm: 8, md: 6, lg: 6 }}
-      wrapperCol={{ xs: 24, sm: 16, md: 16, lg: 12 }}
-      colon={false}
-    >
-      <Title level={3}>Contácto</Title>
-      <Item label="Teléfono Principal" name="mainPhone">
-        <Input prefix={<PhoneOutlined />} maxLength={20} showCount placeholder="Ej. 987 456 789" />
-      </Item>
-      <Item label="Teléfono Secundario" name="secondaryPhone">
-        <Input prefix={<PhoneOutlined />} maxLength={20} showCount placeholder="Ej. 987 654 321" />
-      </Item>
-      <Item label="Correo Electrónico" name="email">
-        <Input prefix={<MailOutlined />} type="email" maxLength={100} showCount placeholder="empresa@ejemplo.com" />
-      </Item>
-      <Item label="Sitio Web" name="webSite">
-        <Input prefix={<GlobalOutlined />} maxLength={255} showCount placeholder="https://www.ejemplo.com" />
-      </Item>
-    </Form>
-  );
-
-  // Tab de Seguridad
-  const SecurityTab = () => (
-    <Form
-      form={securityForm}
-      layout="horizontal"
-      initialValues={{ maxSessionAttempts: 1 }}
-      labelCol={{ xs: 24, sm: 12, md: 10, lg: 6 }}
-      wrapperCol={{ xs: 24, sm: 12, md: 12, lg: 12 }}
-      colon={false}
-    >
-      <Title level={3}>Seguridad del sistema</Title>
-      <Item label="Máximo intentos de inicio de sesión" name="maxSessionAttempts">
-        <InputNumber prefix={<LockOutlined />} min={1} max={10} style={{ width: '100%' }} placeholder="Ej. 3" />
-      </Item>
     </Form>
   );
 
@@ -200,26 +178,6 @@ const Company = () => {
       children: <MainInfoTab />,
     },
     {
-      key: '2',
-      label: (
-        <span>
-          <ContactsOutlined style={{ marginRight: '8px' }} />
-          Contacto
-        </span>
-      ),
-      children: <ContactTab />,
-    },
-    {
-      key: '3',
-      label: (
-        <span>
-          <LockOutlined style={{ marginRight: '8px' }} />
-          Seguridad
-        </span>
-      ),
-      children: <SecurityTab />,
-    },
-    {
       key: '4',
       label: (
         <span>
@@ -232,21 +190,16 @@ const Company = () => {
   ];
 
   return (
-    <Card
-      title={
-        <Space>
-          <BankOutlined style={{ fontSize: '24px', color: '#1890ff' }} />
-          <Title level={4}>Información de la Empresa</Title>
-        </Space>
-      }
-    >
-      <Tabs defaultActiveKey="1" items={items} animated={true} type="card" />
-      <Row justify="end">
+    <CardUI
+      title="Datos de la Empresa"
+      icon={<BankOutlined style={{ fontSize: '24px', color: colors.primary }} />}
+      tabItems={items}
+      actions={[
         <Button type="primary" icon={<SaveOutlined />} onClick={onFinish}>
           Guardar
-        </Button>
-      </Row>
-    </Card>
+        </Button>,
+      ]}
+    ></CardUI>
   );
 };
 

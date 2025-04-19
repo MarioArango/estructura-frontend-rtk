@@ -28,7 +28,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
   }, []);
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <Layout style={{ overflowY: 'hidden' }}>
       <AppSider collapsed={collapsed} onCollapse={setCollapsed} />
       <Layout
         style={{
@@ -37,18 +37,19 @@ const AppLayout = ({ children }: AppLayoutProps) => {
           minHeight: '100vh',
           position: 'relative',
           backgroundColor: '#F2F2F7',
+          display: 'flex',
+          flexDirection: 'column',
         }}
       >
         <AppHeader collapsed={collapsed} setCollapsed={setCollapsed} />
         <Content
           style={{
-            margin: '8px 8px 8px 8px',
+            margin: '8px',
             background: '#fff',
             borderRadius: '12px',
-            minHeight: 280,
-            maxHeight: 'calc(100vh - 65px)',
-            overflow: 'auto',
+            minHeight: '280px',
             boxShadow: '0 1px 2px rgba(0, 0, 0, 0.03)',
+            flexGrow: 0,
           }}
         >
           {children}

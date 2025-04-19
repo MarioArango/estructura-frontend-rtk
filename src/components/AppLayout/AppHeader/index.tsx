@@ -61,7 +61,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ collapsed, setCollapsed }) => {
         position: 'sticky',
         top: 0,
         zIndex: 1,
-        width: '98.4%',
+        width: '98.8%',
         borderRadius: '12px',
         display: 'flex',
         marginLeft: '8px',
