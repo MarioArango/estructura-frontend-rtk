@@ -1,5 +1,5 @@
 export enum Hotkeys {
-  SAVE = 'Ctrl + Enter',
+  SAVE = 'Enter',
   TOGGLE_SIDEBAR = 'Ctrl + B',
   SEARCH = 'Ctrl + F',
 }

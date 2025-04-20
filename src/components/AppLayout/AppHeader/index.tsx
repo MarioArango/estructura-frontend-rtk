@@ -3,7 +3,9 @@ import { MenuFoldOutlined, MenuUnfoldOutlined, SearchOutlined, BellOutlined } fr
 import { useRef, useState } from 'react';
 import { ItemType } from 'antd/es/menu/interface';
 import { useHotkeys } from 'react-hotkeys-hook';
-import { Hotkeys } from '../../../helpers/hoykeys';
+import { Hotkeys } from '../../../mapping/hoykeys';
+import ButtonUI from '../../ui/ButtonUI';
+import { TButtonRef } from '../../../mapping/referencesAnt';
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -16,7 +18,7 @@ interface AppHeaderProps {
 const AppHeader: React.FC<AppHeaderProps> = ({ collapsed, setCollapsed }) => {
   const [searchVisible, setSearchVisible] = useState(false);
 
-  const refButtonCollapse = useRef<HTMLButtonElement>(null);
+  const refButtonCollapse = useRef<TButtonRef>(null);
 
   const notificationItems: ItemType[] = [
     {
@@ -85,13 +87,15 @@ const AppHeader: React.FC<AppHeaderProps> = ({ collapsed, setCollapsed }) => {
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center' }}>
-        <Button
+        <ButtonUI
           type="text"
           ref={refButtonCollapse}
+          title={Hotkeys.TOGGLE_SIDEBAR}
           icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           onClick={() => setCollapsed(!collapsed)}
           style={{ fontSize: '16px', marginRight: 12 }}
           size="large"
+          placement="right"
         />
       </div>
 
