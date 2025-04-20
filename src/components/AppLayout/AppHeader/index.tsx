@@ -1,7 +1,9 @@
-import { Layout, Button, Input, Badge, Dropdown, Typography, Breadcrumb } from 'antd';
-import { MenuFoldOutlined, MenuUnfoldOutlined, SearchOutlined, BellOutlined, HomeFilled } from '@ant-design/icons';
-import { useState } from 'react';
+import { Layout, Button, Input, Badge, Dropdown, Typography } from 'antd';
+import { MenuFoldOutlined, MenuUnfoldOutlined, SearchOutlined, BellOutlined } from '@ant-design/icons';
+import { useRef, useState } from 'react';
 import { ItemType } from 'antd/es/menu/interface';
+import { useHotkeys } from 'react-hotkeys-hook';
+import { Hotkeys } from '../../../helpers/hoykeys';
 
 const { Header } = Layout;
 const { Search } = Input;
@@ -13,6 +15,8 @@ interface AppHeaderProps {
 
 const AppHeader: React.FC<AppHeaderProps> = ({ collapsed, setCollapsed }) => {
   const [searchVisible, setSearchVisible] = useState(false);
+
+  const refButtonCollapse = useRef<HTMLButtonElement>(null);
 
   const notificationItems: ItemType[] = [
     {
@@ -52,6 +56,16 @@ const AppHeader: React.FC<AppHeaderProps> = ({ collapsed, setCollapsed }) => {
     },
   ];
 
+  useHotkeys(
+    Hotkeys.TOGGLE_SIDEBAR,
+    event => {
+      event.preventDefault();
+      refButtonCollapse.current?.click();
+    },
+    {},
+    [collapsed]
+  );
+
   return (
     <Header
       style={{
@@ -73,6 +87,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({ collapsed, setCollapsed }) => {
       <div style={{ display: 'flex', alignItems: 'center' }}>
         <Button
           type="text"
+          ref={refButtonCollapse}
           icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
           onClick={() => setCollapsed(!collapsed)}
           style={{ fontSize: '16px', marginRight: 12 }}

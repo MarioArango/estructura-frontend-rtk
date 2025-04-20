@@ -33,6 +33,7 @@ import {
   RouteCompany,
   RouteConfiguration,
   RouteCrm,
+  RouteDashboard,
   RouteInventory,
   RouteMaintenance,
   RouteSales,
@@ -62,7 +63,7 @@ const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
 
   const onOpenChange = (keys: string[]) => {
     // Los módulos principales deben coincidir con las keys de los items del menú
-    const rootKeys = ['sales', 'inventario', 'maintenance', 'crm', 'reports', 'configuration', 'company'];
+    const rootKeys = ['sales', 'inventory', 'maintenance', 'crm', 'reports', 'configuration', 'company'];
 
     // Filtrar las keys para que solo tengamos las keys de nivel raíz
     const rootKeysOpened = keys.filter(key => rootKeys.includes(key));
@@ -91,6 +92,7 @@ const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
   return (
     <Sider
       width={260}
+      collapsedWidth={60}
       theme="light"
       collapsible
       collapsed={collapsed}
@@ -142,11 +144,12 @@ const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
         selectedKeys={selectedKeys}
         onSelect={({ selectedKeys: keys }) => setSelectedKeys(keys as string[])}
         style={{ borderRight: 0 }}
+        inlineCollapsed={collapsed}
         items={[
           {
             key: 'dashboard',
             icon: <DashboardOutlined />,
-            label: 'Dashboard',
+            label: <Link to={RouteDashboard.DASHBOARD}>Dashboard</Link>,
           },
           {
             key: 'sales',
@@ -198,7 +201,7 @@ const AppSider: React.FC<AppSiderProps> = ({ collapsed, onCollapse }) => {
             ],
           },
           {
-            key: 'inventario', // Mantener coherencia con el listado de rootKeys
+            key: 'inventory', // Mantener coherencia con el listado de rootKeys
             icon: <ShopOutlined />,
             label: 'Inventario',
             children: [

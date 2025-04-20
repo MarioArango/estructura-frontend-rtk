@@ -32,6 +32,8 @@ import {
 import { requiredField } from '../../../helpers/form';
 import CardUI from '../../../components/ui/CardUI';
 import { colors } from '../../../providers/design/colors';
+import ButtonUI from '../../../components/ui/ButtonUI';
+import { Hotkeys } from '../../../helpers/hoykeys';
 
 const { Item } = Form;
 const { Title } = Typography;
@@ -138,7 +140,7 @@ const Company = () => {
             <Input prefix={<GlobalOutlined />} maxLength={255} showCount placeholder="https://www.ejemplo.com" />
           </Item>
           <Title level={3}>Seguridad del sistema</Title>
-          <Item label="Máximo intentos sesión" name="maxSessionAttempts">
+          <Item label="Intentos sesión" name="maxSessionAttempts">
             <InputNumber prefix={<LockOutlined />} min={1} max={10} style={{ width: '100%' }} placeholder="Ej. 3" />
           </Item>
         </Col>
@@ -195,9 +197,15 @@ const Company = () => {
       icon={<BankOutlined style={{ fontSize: '24px', color: colors.primary }} />}
       tabItems={items}
       actions={[
-        <Button type="primary" icon={<SaveOutlined />} onClick={onFinish}>
-          Guardar
-        </Button>,
+        <ButtonUI
+          text="Guardar"
+          type="primary"
+          hotkey={Hotkeys.SAVE}
+          icon={<SaveOutlined />}
+          onClick={() => {
+            console.log('guardando...');
+          }}
+        />,
       ]}
     ></CardUI>
   );

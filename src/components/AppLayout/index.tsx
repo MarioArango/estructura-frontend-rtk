@@ -32,7 +32,7 @@ const AppLayout = ({ children }: AppLayoutProps) => {
       <AppSider collapsed={collapsed} onCollapse={setCollapsed} />
       <Layout
         style={{
-          marginLeft: collapsed ? 80 : 260,
+          marginLeft: collapsed ? 60 : 260,
           transition: 'margin-left 0.2s',
           minHeight: '100vh',
           position: 'relative',
