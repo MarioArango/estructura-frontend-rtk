@@ -16,7 +16,7 @@ import { requiredField } from '../../../helpers/form';
 import CardUI from '../../../components/ui/CardUI';
 import { colors } from '../../../providers/design/colors';
 import ButtonUI from '../../../components/ui/ButtonUI';
-import { Hotkeys } from '../../../mapping/hoykeys';
+import { Hotkeys } from '../../../mapping/hoyKeys';
 import { useRef } from 'react';
 import { TButtonRef, TInputNumberRef, TInputRef, TSelectRef } from '../../../mapping/referencesAnt';
 
