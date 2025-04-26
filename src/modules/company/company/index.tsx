@@ -47,6 +47,7 @@ const Company = () => {
     validateFields().then(() => {});
   };
 
+  console.log(import.meta.env);
   // Lista simulada de ubigeos para el Select
   const ubigeoOptions = [
     { value: '150101', label: 'Lima - Lima - Lima' },
