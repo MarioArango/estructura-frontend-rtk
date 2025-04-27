@@ -17,8 +17,12 @@ import CardUI from '../../../components/ui/CardUI';
 import { colors } from '../../../providers/design/colors';
 import ButtonUI from '../../../components/ui/ButtonUI';
 import { Hotkeys } from '../../../mapping/hoyKeys';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { TButtonRef, TInputNumberRef, TInputRef, TSelectRef } from '../../../mapping/referencesAnt';
+import { TSaveCompanyRequest } from '../../../providers/store/features/company/types/dto/request';
+import { companySchema } from '../../../providers/firebase/firestore/schemas/company';
+import { useAppDispatch } from '../../../hooks/useRedux';
+import { companyThunk } from '../../../providers/store/features/company/thunk';
 
 const { Item } = Form;
 const { Title } = Typography;
@@ -43,11 +47,14 @@ const Company = () => {
   const [form] = Form.useForm();
   const { validateFields } = form;
 
+  const dispatch = useAppDispatch();
+
   const handleFinish = () => {
-    validateFields().then(() => {});
+    validateFields().then((values: TSaveCompanyRequest) => {
+      dispatch(companyThunk.saveCompany(values));
+    });
   };
 
-  console.log(import.meta.env);
   // Lista simulada de ubigeos para el Select
   const ubigeoOptions = [
     { value: '150101', label: 'Lima - Lima - Lima' },
@@ -126,7 +133,7 @@ const Company = () => {
             />
           </Item>
           <Title level={3}>Representante</Title>
-          <Item label="Nombre completo" name="legalRepresentative">
+          <Item label="Nombre completo" name="nameLegalRepresentative" rules={requiredField}>
             <Input
               ref={refLegalRepresentative}
               prefix={<UserOutlined />}
@@ -139,7 +146,7 @@ const Company = () => {
               }}
             />
           </Item>
-          <Item label="DNI" name="dniLegalRepresentative">
+          <Item label="DNI" name="dniLegalRepresentative" rules={requiredField}>
             <Input
               ref={refDNI}
               prefix={<IdcardOutlined />}
@@ -153,7 +160,7 @@ const Company = () => {
             />
           </Item>
           <Title level={3}>Impuesto General</Title>
-          <Item label="IGV (%)" name="igv">
+          <Item label="IGV (%)" name="igv" rules={requiredField}>
             <InputNumber
               ref={refIGV}
               min={1}
@@ -280,6 +287,10 @@ const Company = () => {
     },
   ];
 
+  useEffect(() => {
+    dispatch(companyThunk.getCompany({}));
+  }, []);
+
   return (
     <CardUI
       title="Datos de la Empresa"
@@ -293,7 +304,7 @@ const Company = () => {
           hotkey={Hotkeys.SAVE}
           icon={<SaveOutlined />}
           onClick={() => {
-            console.log('guardando...');
+            form.submit();
           }}
         />,
       ]}

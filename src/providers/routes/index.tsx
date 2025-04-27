@@ -1,15 +1,24 @@
 import { Routes, Route, BrowserRouter } from 'react-router';
-import Login from '../../modules/Session/Login';
-import RecoveryPassword from '../../modules/Session/RecoveryPassword';
-import { RouteCompany, RouteConfiguration, RouteCrm, RouteDashboard, RouteInventory, RouteSession, RouteSales, RouteMaintenance } from './mapping';
-import Dashboard from '../../modules/Dashboard';
-import Clients from '../../modules/Sales/Clients';
-import Orders from '../../modules/Sales/Orders';
-import CashRegister from '../../modules/Sales/CashRegister';
-import Vouchers from '../../modules/Sales/Vouchers';
-import AccountsReceivable from '../../modules/Sales/AccountsReceivable';
-import PricesList from '../../modules/Sales/Configuration/PricesList';
-import SalesParameters from '../../modules/Sales/Configuration/SalesParameters';
+import Login from '../../modules/session/Login';
+import RecoveryPassword from '../../modules/session/RecoveryPassword';
+import {
+  RouteCompany,
+  RouteConfiguration,
+  RouteCrm,
+  RouteDashboard,
+  RouteInventory,
+  RouteSession,
+  RouteSales,
+  RouteMaintenance,
+} from './mapping';
+import Dashboard from '../../modules/dashboard';
+import Clients from '../../modules/sales/Clients';
+import Orders from '../../modules/sales/Orders';
+import CashRegister from '../../modules/sales/CashRegister';
+import Vouchers from '../../modules/sales/Vouchers';
+import AccountsReceivable from '../../modules/sales/AccountsReceivable';
+import PricesList from '../../modules/sales/Configuration/PricesList';
+import SalesParameters from '../../modules/sales/Configuration/SalesParameters';
 import Warehouses from '../../modules/Inventories/Warehouses';
 import Products from '../../modules/Inventories/Products';
 import PurchaseOrders from '../../modules/Inventories/PurchaseOrders';
@@ -18,19 +27,19 @@ import ProductOutput from '../../modules/Inventories/ProductOutput';
 import ProductEntry from '../../modules/Inventories/ProductEntry';
 import TransferWarehouses from '../../modules/Inventories/TransferWarehouses';
 import Providers from '../../modules/Inventories/Providers';
-import OportunityTracking from '../../modules/CRM/OportunityTracking';
-import Onmichannel from '../../modules/CRM/Omnichannel';
-import Promotions from '../../modules/CRM/Promotions';
-import JobOrder from '../../modules/Maintenance/JobOrder';
-import JobPanel from '../../modules/Maintenance/JobPanel';
-import TechnicalManagement from '../../modules/Maintenance/TechnicalManagement';
-import GeneralMasters from '../../modules/Configuration/GeneralMasters';
-import VariablesIntegration from '../../modules/Configuration/VariablesIntegration';
-import LogginActivities from '../../modules/Configuration/LogginActivities';
-import Company from '../../modules/Company/Company';
-import BranchOffices from '../../modules/Company/BranchOffices';
-import Users from '../../modules/Company/Users';
-import Roles from '../../modules/Company/Roles';
+import OportunityTracking from '../../modules/crm/OportunityTracking';
+import Onmichannel from '../../modules/crm/Omnichannel';
+import Promotions from '../../modules/crm/Promotions';
+import JobOrder from '../../modules/maintenance/JobOrder';
+import JobPanel from '../../modules/maintenance/JobPanel';
+import TechnicalManagement from '../../modules/maintenance/TechnicalManagement';
+import GeneralMasters from '../../modules/configuration/GeneralMasters';
+import VariablesIntegration from '../../modules/configuration/VariablesIntegration';
+import LogginActivities from '../../modules/configuration/LogginActivities';
+import Company from '../../modules/company/company';
+import BranchOffices from '../../modules/company/BranchOffices';
+import Users from '../../modules/company/Users';
+import Roles from '../../modules/company/Roles';
 
 const AppRoutes = ({ Layout }: { Layout: React.FC<{ children: React.ReactNode }> }) => {
   return (
@@ -72,7 +81,7 @@ const AppRoutes = ({ Layout }: { Layout: React.FC<{ children: React.ReactNode }>
           <Route path={RouteInventory.TRANSFER_WAHERHOUSE_REGISTER} element={<TransferWarehouses />} />
           <Route path={RouteInventory.PROVIDERS} element={<Providers />} />
 
-          {/* CRM */}
+          {/* crm */}
           <Route path={RouteCrm.OPPORTUNITY_TRACKING} element={<OportunityTracking />} />
           <Route path={RouteCrm.OMNICHANNEL} element={<Onmichannel />} />
           <Route path={RouteCrm.PROMOTIONS} element={<Promotions />} />
